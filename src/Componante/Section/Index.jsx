@@ -13,8 +13,7 @@ export default function ({ coord = null }) {
   useEffect(() => {
     if (coord) {
       fetch(
-        `https://odre.opendatasoft.com/api/records/1.0/search/?dataset=stations-gnv&q=&rows=250&facet=statut&facet=annee_ouverture&facet=exploitant&facet=
-        commune&facet=departement&facet=nom_region&facet=carburant&facet=paiement&facet=acces_pl&facet=biognc&geofilter.distance=
+        `https://public.opendatasoft.com/api/records/1.0/search/?dataset=prix_des_carburants_j_7&q=&facet=cp&rows=250&facet=pop&facet=city&facet=automate_24_24&facet=fuel&facet=shortage&facet=update&facet=services&facet=brand&geofilter.distance=
         ${coord.lat}%2C${coord.lng}%2C${distance * 1000}`
       )
         .then((res) => res.json())
@@ -25,8 +24,8 @@ export default function ({ coord = null }) {
         .catch((err) => console.error(err));
     } else if (stations.length === 0) {
       fetch(
-        "https://odre.opendatasoft.com/api/records/1.0/search/?dataset=stations-gnv&q=&rows=250&facet=statut&facet=annee_ouverture&facet=exploitant&facet=commune&facet=departement&facet=nom_region&facet=carburant&facet=paiement&facet=acces_pl&facet=biognc"
-      )
+        "https://public.opendatasoft.com/api/records/1.0/search/?dataset=prix_des_carburants_j_7&q=&facet=cp&rows=250&facet=pop&facet=city&facet=automate_24_24&facet=fuel&facet=shortage&facet=update&facet=services&facet=brand"
+        )
         .then((res) => res.json())
         .then((data) => {
           setStation(data.records);
@@ -43,7 +42,7 @@ export default function ({ coord = null }) {
     <section>
       <input
         type="range"
-        min="5"
+        min="2"
         max="15"
         onChange={onChang}
         value={distance}

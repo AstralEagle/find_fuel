@@ -3,13 +3,18 @@
     padding: 2px 10px 2px 10px;
     box-shadow: 2px 2px 5px black;
     border-radius: 15px;
-    min-width: 50%;
+    width: 50%;
     background-color: #d5dddf;
 }
 .itemStation *{
     margin: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
+
 .itemStation:hover{
+    
     background-color: #fdc66e;
 
 }

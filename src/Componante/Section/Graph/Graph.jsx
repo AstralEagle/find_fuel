@@ -8,29 +8,30 @@ export default function ({ data = {} }) {
   const ref = useRef(null);
 
   useEffect(() => {
-    console.log(graph, "test");
     if (!graph) {
-      graph = setGraph(ref);
+      graph = setGraph(ref, data);
       graph.data(data);
       graph.render();
-    }
-  }, []);
-
-  useEffect(() => {
-      console.log("test de force 2",data)
-    if (graph) {
-      graph.changeData(data);
+      window.onresize = changeSize
+    } else {
+      graph.read(data, false);
     }
   }, [data]);
+  const changeSize = () => {
+    console.log("Size : ",ref.current.offsetWidth,ref.current.offsetHeight)
+    graph.changeSize(ref.current.offsetWidth-10,ref.current.offsetHeight-10);
+    graph.fitView();
+  }
 
-  return <div id="grapContent" ref={ref}></div>;
+
+  return <div id="grapContent" ref={ref} onResize={changeSize}></div>;
 }
 
-const setGraph = (ref) => {
+const setGraph = (ref, data) => {
   return new G6.Graph({
     container: ReactDOM.findDOMNode(ref.current),
-    width: ref.current.offsetWidth,
-    height: ref.current.offsetHeight,
+    width: ref.current.offsetWidth-10,
+    height: ref.current.offsetHeight-10,
     fitView: true,
     fitViewPadding: [20, 40, 50, 20],
     defaultNode: {
@@ -44,8 +45,16 @@ const setGraph = (ref) => {
       style: {
         stroke: "#72CC4A",
         width: 150,
-        textAlign: "center"
+        textAlign: "center",
       },
     },
+    layout: {
+      type: "dagre",
+      ranksep: 40
+    },
+    modes:{
+      default: ['drag-canvas','zoom-canvas']
+    }
+
   });
 };

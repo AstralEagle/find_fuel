@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Vai&display=swap');
 
 body {
   margin: 0px;
   background-color: #ecf0f1;
+  font-family: 'Noto Sans  Vai', 'Roboto', sans-serif;
 }
 header {
   background-color: #2c3e50;
@@ -45,21 +47,27 @@ aside{
     position: fixed;
     top: 65px;
     bottom: 10px;
+    left: -50%;
     background-color:#95a5a6;
     border-radius: 15px;
     box-shadow: 2px 2px 5px black;
     padding: 5px;
     width: 43%;
-
     text-align: center;
+    transition: left 1s ease-in-out;
+}
+#asideView{
+    left: 5px;
 }
 #grapContent{
     min-height: 250px;
+    max-height: 45%;
     position: absolute;
     bottom: 15px;
     right: 15px;
     left: 15px;
     background-color: white;
     border-radius: 15px;
+    text-align: center;
 
 }

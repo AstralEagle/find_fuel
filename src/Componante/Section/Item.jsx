@@ -9,8 +9,8 @@ export default function ({ station, setInfo }) {
 
   return (
     <div className="itemStation" onClick={onClick}>
-      <h3>{`${station.fields.exploitant} - ${station.fields.commune}`}</h3>
-      <p>{`${station.fields.rue}`}</p>
+      <h3>{`${station.fields.name ? station.fields.name+"-":""} ${station.fields.city}`}</h3>
+      <p>{`${station.fields.address}`}</p>
     </div>
   );
 }
